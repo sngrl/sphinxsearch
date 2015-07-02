@@ -9,4 +9,11 @@ class SphinxSearchServiceProvider extends \Illuminate\Support\ServiceProvider
             return new SphinxSearch;
         });
     }
+
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/config/sphinx.php' => config_path('sphinx.php'),
+        ]);
+    }
 }
