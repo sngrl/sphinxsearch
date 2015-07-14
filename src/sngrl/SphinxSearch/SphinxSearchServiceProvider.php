@@ -14,7 +14,7 @@ class SphinxSearchServiceProvider extends \Illuminate\Support\ServiceProvider
     {
 
         $this->publishes([
-            __DIR__.'../../../../config/sphinxsearch.php' => config_path('sphinxsearch.php'),
+            __DIR__.'/../../../config/sphinxsearch.php' => config_path('sphinxsearch.php'),
         ]);
     }
 
