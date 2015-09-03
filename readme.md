@@ -47,7 +47,7 @@ Configuration
 To use Sphinx Search, you need to configure your indexes and what model it should query. To do so, publish the configuration into your app.
 
 ```php
-php artisan vendor:publish sngrl/sphinxsearch
+php artisan vendor:publish --provider=sngrl\SphinxSearch\SphinxSearchServiceProvider --force
 ```
 
 This will create the file `config/sphinxsearch.php`. Modify as needed the host and port, and configure the indexes, binding them to a table and id column.
