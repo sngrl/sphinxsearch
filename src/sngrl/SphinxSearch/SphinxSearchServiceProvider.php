@@ -16,7 +16,11 @@ class SphinxSearchServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'../../../../config/sphinxsearch.php' => config_path('sphinxsearch.php'),
+            ## Original
+            #__DIR__.'../../../../config/sphinxsearch.php' => config_path('sphinxsearch.php'),
+
+            ## https://github.com/sngrl/sphinxsearch/issues/3
+            __DIR__.'/../../../config/sphinxsearch.php' => config_path('sphinxsearch.php'),
         ]);
     }
 
