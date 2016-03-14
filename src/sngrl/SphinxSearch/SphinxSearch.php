@@ -150,19 +150,20 @@ class SphinxSearch
                 $config = isset($this->_config['mapping']) ? $this->_config['mapping']
                     : $this->_config[$this->_index_name];
                 if ($config) {
+                    $column_id = ($config['column']) ? $config['column'] : 'id';
                     if (isset($config['modelname'])) {
                         if ($this->_eager_loads) {
                             $result = call_user_func_array($config['modelname'] . "::whereIn",
-                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD(id, $idString)"))
+                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD($column_id, $idString)"))
                                 ->with($this->_eager_loads)->get();
                         } else {
                             $result = call_user_func_array($config['modelname'] . "::whereIn",
-                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD(id, $idString)"))
+                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD($column_id, $idString)"))
                                 ->get();
                         }
                     } else {
                         $result = \DB::table($config['table'])->whereIn($config['column'], $matchids)
-                            ->orderByRaw(\DB::raw("FIELD(id, $idString)"))->get();
+                            ->orderByRaw(\DB::raw("FIELD($column_id, $idString)"))->get();
                     }
                 }
             } else {
