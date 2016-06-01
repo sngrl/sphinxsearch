@@ -229,4 +229,10 @@ class SphinxSearch
         }
         return false;
     }
+    
+    public function escapeStringQL($string)
+    {
+        return $this->_connection->escapeString($string);
+    }
+    
 }
