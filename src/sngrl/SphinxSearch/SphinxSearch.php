@@ -10,6 +10,7 @@ class SphinxSearch
     protected $_total_count;
     protected $_time;
     protected $_eager_loads;
+	protected $_raw_mysql_connection;
 
     public function __construct()
     {
@@ -21,11 +22,60 @@ class SphinxSearch
         $this->_connection->setConnectTimeout($timeout);
         $this->_connection->setMatchMode(\Sphinx\SphinxClient::SPH_MATCH_ANY);
         $this->_connection->setSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE);
+		$this->_raw_mysql_connection = mysqli_connect($host, '', '', '', 9306);
         $this->_config = \Config::get('sphinxsearch.indexes');
         reset($this->_config);
         $this->_index_name = isset($this->_config['name']) ? implode(',', $this->_config['name']) : key($this->_config);
         $this->_eager_loads = array();
     }
+
+	/**
+	 * @param $docs
+	 * @param $index_name
+	 * @param $query
+	 * @param array $extra, in this format: array('option_name' => option_value, 'limit' => 100, ...)
+	 * @return array
+	 */
+	public function get_snippets($docs, $index_name, $query, $extra = [])
+	{
+		// $extra = [];
+		if (is_array($docs) === FALSE)
+		{
+			$docs = [$docs];
+		}
+		foreach ($docs as &$doc)
+		{
+			$doc = "'".mysqli_real_escape_string($this->_raw_mysql_connection, strip_tags($doc))."'";
+		}
+
+		$extra_ql = '';
+		if ($extra)
+		{
+			foreach ($extra as $key => $value)
+			{
+				$extra_ql[] = $value.' AS '.$key;
+			}
+			$extra_ql = implode(',', $extra_ql);
+			if ($extra_ql)
+			{
+				$extra_ql = ','.$extra_ql;
+			}
+		}
+
+		$query = "CALL SNIPPETS((".implode(',',$docs)."),'".$index_name."','".mysqli_real_escape_string($this->_raw_mysql_connection, $query)."' ".$extra_ql.")";
+		// die($query);
+		$result = mysqli_query($this->_raw_mysql_connection, $query);
+		// ddd($result);
+		$reply = array();
+		if ($result)
+		{
+			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+			{
+				$reply[] = $row['snippet'];
+			}
+		}
+		return $reply;
+	}
 
     public function search($string, $index_name = null)
     {
@@ -128,6 +178,11 @@ class SphinxSearch
         return $this->_connection->buildExcerpts(array($content), $this->_index_name, $this->_search_string, $opts);
     }
 
+	public function excerptQL($content, $search_string, $opts = array())
+	{
+		return $this->_connection->buildExcerpts(array($content), $this->_index_name, $search_string, $opts);
+	}
+
     public function excerpts($contents, $opts = array())
     {
         return $this->_connection->buildExcerpts($contents, $this->_index_name, $this->_search_string, $opts);
@@ -229,10 +284,10 @@ class SphinxSearch
         }
         return false;
     }
-    
+
     public function escapeStringQL($string)
     {
         return $this->_connection->escapeString($string);
     }
-    
+
 }
