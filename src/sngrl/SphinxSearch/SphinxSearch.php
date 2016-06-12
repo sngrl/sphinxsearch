@@ -22,7 +22,7 @@ class SphinxSearch
         $this->_connection->setConnectTimeout($timeout);
         $this->_connection->setMatchMode(\Sphinx\SphinxClient::SPH_MATCH_ANY);
         $this->_connection->setSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE);
-		$this->_raw_mysql_connection = mysqli_connect($host, '', '', '', 9306);
+		$this->_raw_mysql_connection = mysqli_connect(\Config::get('sphinxsearch.mysql_server.host'), '', '', '', \Config::get('sphinxsearch.mysql_server.port'));
         $this->_config = \Config::get('sphinxsearch.indexes');
         reset($this->_config);
         $this->_index_name = isset($this->_config['name']) ? implode(',', $this->_config['name']) : key($this->_config);
@@ -36,7 +36,7 @@ class SphinxSearch
 	 * @param array $extra, in this format: array('option_name' => option_value, 'limit' => 100, ...)
 	 * @return array
 	 */
-	public function get_snippets($docs, $index_name, $query, $extra = [])
+	public function getSnippetsQL($docs, $index_name, $query, $extra = [])
 	{
 		// $extra = [];
 		if (is_array($docs) === FALSE)
@@ -177,11 +177,6 @@ class SphinxSearch
     {
         return $this->_connection->buildExcerpts(array($content), $this->_index_name, $this->_search_string, $opts);
     }
-
-	public function excerptQL($content, $search_string, $opts = array())
-	{
-		return $this->_connection->buildExcerpts(array($content), $this->_index_name, $search_string, $opts);
-	}
 
     public function excerpts($contents, $opts = array())
     {
