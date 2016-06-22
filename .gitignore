@@ -1,0 +1,12 @@
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+vendor/
+node_modules/
+bootstrap/cache/
+.env.*.php
+.env.php
+.env

@@ -22,7 +22,9 @@ class SphinxSearch
         $this->_connection->setConnectTimeout($timeout);
         $this->_connection->setMatchMode(\Sphinx\SphinxClient::SPH_MATCH_ANY);
         $this->_connection->setSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE);
-		$this->_raw_mysql_connection = mysqli_connect(\Config::get('sphinxsearch.mysql_server.host'), '', '', '', \Config::get('sphinxsearch.mysql_server.port'));
+        if (extension_loaded('mysqli') && \Config::get('sphinxsearch.mysql_server')) {
+            $this->_raw_mysql_connection = mysqli_connect(\Config::get('sphinxsearch.mysql_server.host'), '', '', '', \Config::get('sphinxsearch.mysql_server.port'));
+        }
         $this->_config = \Config::get('sphinxsearch.indexes');
         reset($this->_config);
         $this->_index_name = isset($this->_config['name']) ? implode(',', $this->_config['name']) : key($this->_config);
