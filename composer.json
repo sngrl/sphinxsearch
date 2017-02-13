@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-0": {
-      "intricateweb\\SphinxSearch": "src/"
+      "Intricateweb\\SphinxSearch": "src/"
     }
   }
 }
