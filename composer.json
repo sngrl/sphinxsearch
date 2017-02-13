@@ -21,8 +21,8 @@
     "gigablah/sphinxphp": "2.0.8"
   },
   "autoload": {
-    "psr-0": {
-      "Intricateweb\\SphinxSearch": "src/"
+    "psr-4": {
+      "Intricateweb\\SphinxSearch": "src/sngrl/"
     }
   }
 }
