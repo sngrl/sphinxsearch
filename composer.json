@@ -1,5 +1,5 @@
 {
-  "name": "sngrl/sphinxsearch",
+  "name": "intricateweb/sphinxsearch",
   "description": "Laravel package to query Sphinxsearch in Laravel 5",
   "keywords": [
     "sphinx",
