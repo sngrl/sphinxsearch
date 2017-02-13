@@ -1,18 +1,18 @@
 {
   "name": "intricateweb/sphinxsearch",
-  "description": "Laravel package to query Sphinxsearch in Laravel 5",
+  "description": "Fork of Laravel package to query Sphinxsearch in Laravel 5 by sngrl that works on 5.4",
   "keywords": [
     "sphinx",
     "sphinxsearch",
     "laravel",
-    "laravel 5"
+    "laravel 5.4"
   ],
-  "homepage": "http://github.com/sngrl/sphinxsearch",
+  "homepage": "http://github.com/intricateweb/sphinxsearch",
   "license": "Apache-2.0",
   "authors": [
     {
-      "name": "sngrl",
-      "email": "reserved@mail.ru"
+      "name": "intricateweb",
+      "email": "info@intricateweb.com"
     }
   ],
   "require": {
@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-0": {
-      "sngrl\\SphinxSearch": "src/"
+      "intricateweb\\SphinxSearch": "src/"
     }
   }
 }
