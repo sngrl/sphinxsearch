@@ -1,5 +1,5 @@
 <?php 
-namespace sngrl\SphinxSearch;
+namespace Intricateweb\SphinxSearch;
 
 class SphinxSearch
 {
