@@ -7,7 +7,7 @@ class SphinxSearchServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app['sphinxsearch'] = $this->app->share(function ($app) {
+        $this->app->singleton(SphinxSearch::class, function ($app) {
             return new SphinxSearch;
         });
     }
