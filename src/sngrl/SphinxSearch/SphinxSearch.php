@@ -207,20 +207,24 @@ class SphinxSearch
                 $idString = implode(',', $matchids);
                 $config = isset($this->_config['mapping']) ? $this->_config['mapping']
                     : $this->_config[$this->_index_name];
+
+		// Get the model primary key column name    
+		$primaryKey = isset($config['primaryKey']) ? $config['primaryKey'] : 'id';
+		    
                 if ($config) {
                     if (isset($config['modelname'])) {
                         if ($this->_eager_loads) {
                             $result = call_user_func_array($config['modelname'] . "::whereIn",
-                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD(id, $idString)"))
+                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD($primaryKey, $idString)"))
                                 ->with($this->_eager_loads)->get();
                         } else {
                             $result = call_user_func_array($config['modelname'] . "::whereIn",
-                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD(id, $idString)"))
+                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD($primaryKey, $idString)"))
                                 ->get();
                         }
                     } else {
                         $result = \DB::table($config['table'])->whereIn($config['column'], $matchids)
-                            ->orderByRaw(\DB::raw("FIELD(id, $idString)"))->get();
+                            ->orderByRaw(\DB::raw("FIELD($primaryKey, $idString)"))->get();
                     }
                 }
             } else {
