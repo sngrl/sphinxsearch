@@ -102,6 +102,12 @@ class SphinxSearch
         return $this;
     }
 
+    public function setIndexWeights(array $weights)
+    {
+        $this->_connection->setIndexWeights($weights);
+        return $this;
+    }
+
     public function setMatchMode($mode)
     {
         $this->_connection->setMatchMode($mode);
