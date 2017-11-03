@@ -212,7 +212,10 @@ class SphinxSearch
 		$primaryKey = isset($config['primaryKey']) ? $config['primaryKey'] : 'id';
 		    
                 if ($config) {
-                    if (isset($config['modelname'])) {
+                    if (isset($config['repository'])) {
+                        $result = call_user_func_array($config['repository'] . '::findInRange',
+                            array($config['column'], $matchids));
+                    } else if (isset($config['modelname'])) {
                         if ($this->_eager_loads) {
                             $result = call_user_func_array($config['modelname'] . "::whereIn",
                                 array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD($primaryKey, $idString)"))
