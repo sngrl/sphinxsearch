@@ -132,6 +132,21 @@ class SphinxSearch
         return $this;
     }
 
+    /**
+     * Limit the ID range; only match records if document ID is between $min and $max (inclusive)
+     *
+     * @param integer $min minimum document ID
+     * @param integer $max maximum document ID
+     *
+     * @return SphinxClient
+     * @throws \InvalidArgumentException When $min or $max are invalid
+     */
+    public function setIdRange($min, $max)
+    {
+        $this->_connection->setIdRange($min, $max);
+        return $this;
+    }
+
     public function setGeoAnchor($attrlat, $attrlong, $lat = null, $long = null)
     {
         $this->_connection->setGeoAnchor($attrlat, $attrlong, $lat, $long);
