@@ -114,9 +114,9 @@ class SphinxSearch
         return $this;
     }
 
-    public function setRankingMode($mode)
+    public function setRankingMode($mode, $rankexpr = null)
     {
-        $this->_connection->setRankingMode($mode);
+        $this->_connection->setRankingMode($mode, $rankexpr);
         return $this;
     }
 
