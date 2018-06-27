@@ -150,6 +150,16 @@ class SphinxSearch
         return $this;
     }
 
+    /**
+     * @param $index_name
+     * @return $this
+     */
+    public function setIndexName($index_name)
+    {
+        $this->_index_name = $index_name;
+        return $this;
+    }
+
     public function limit($limit, $offset = 0, $max_matches = 1000, $cutoff = 1000)
     {
         $this->_connection->setLimits($offset, $limit, $max_matches, $cutoff);
