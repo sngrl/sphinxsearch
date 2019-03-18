@@ -233,6 +233,8 @@ class SphinxSearch
             } else {
                 $result = array();
             }
+        } else {
+            throw new SphinxSearchException($this->_connection->GetLastError());
         }
         if ($respect_sort_order) {
             if (isset($matchids)) {

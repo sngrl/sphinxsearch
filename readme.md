@@ -84,7 +84,7 @@ $results = $sphinx->search('my query', 'index_name')->query();
 
 Basic query (with Eloquent)
 ```php
-$results = $sphinx->search('my query', 'index_name')->get();
+$results = $sphinx->search('my query', 'index_name')->get(); // Throws SphinxSearchException
 ```
 
 Query another Sphinx index with limit and filters.
