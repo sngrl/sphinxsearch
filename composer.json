@@ -1,5 +1,5 @@
 {
-  "name": "sngrl/sphinxsearch",
+  "name": "biblioonline/sphinxsearch-l5",
   "description": "Laravel package to query Sphinxsearch in Laravel 5",
   "keywords": [
     "sphinx",
@@ -7,12 +7,12 @@
     "laravel",
     "laravel 5"
   ],
-  "homepage": "http://github.com/sngrl/sphinxsearch",
-  "license": "Apache-2.0",
+  "homepage": "https://github.com/biblioonline/sphinxsearch-l5",
+  "license": "MIT",
   "authors": [
     {
-      "name": "sngrl",
-      "email": "reserved@mail.ru"
+      "name": "biblioonline",
+      "email": "danik0072@gmail.com"
     }
   ],
   "require": {
