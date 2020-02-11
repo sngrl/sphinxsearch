@@ -13,7 +13,7 @@ Require this package in your composer.json:
 ```php
 	"require": {
         /*** Some others packages ***/
-		"sngrl/sphinxsearch": "dev-master",
+		"ptand/sphinxsearch": "dev-master",
 	},
 ```
 
