@@ -1,5 +1,5 @@
 {
-  "name": "ptandDev/sphinxsearch",
+  "name": "ptand/sphinxsearch",
   "description": "Laravel package to query Sphinxsearch in Laravel",
   "keywords": [
     "sphinx",
