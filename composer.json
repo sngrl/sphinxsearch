@@ -1,5 +1,5 @@
 {
-  "name": "sngrl/sphinxsearch",
+  "name": "ptandDev/sphinxsearch",
   "description": "Laravel package to query Sphinxsearch in Laravel",
   "keywords": [
     "sphinx",
@@ -7,7 +7,7 @@
     "laravel",
     "laravel 6"
   ],
-  "homepage": "http://github.com/sngrl/sphinxsearch",
+  "homepage": "http://github.com/ptandDev/sphinxsearch",
   "license": "Apache-2.0",
   "authors": [
     {
