@@ -1,7 +1,7 @@
-Sphinx Search for Laravel 5 - Custom build with snippets support 
+Sphinx Search for Laravel 6 - Custom build with snippets support 
 =======================
-Simple Laravel 5 package for make queries to Sphinx Search.
-Inspired by scalia/sphinxsearch package for Laravel 4.
+Simple Laravel 6 package for make queries to Sphinx Search.
+Forked from by sngrl/sphinxsearch package for Laravel 5.
 
 This package was created to import to the site packagist.org and allow installation through Composer (https://getcomposer.org/).
 
@@ -13,7 +13,7 @@ Require this package in your composer.json:
 ```php
 	"require": {
         /*** Some others packages ***/
-		"sngrl/sphinxsearch": "dev-master",
+		"ptand/sphinxsearch": "dev-master",
 	},
 ```
 
@@ -23,7 +23,7 @@ Run in your console `composer update` command to pull down the latest version of
 Or just run this in console:
 
 ```php
-composer require sngrl/sphinxsearch:dev-master
+composer require ptand/sphinxsearch:dev-master
 ```
 
 After updating composer, add the ServiceProvider to the "providers" array in config/app.php:
@@ -31,14 +31,14 @@ After updating composer, add the ServiceProvider to the "providers" array in con
 ```php
 	'providers' => array(
         /*** Some others providers ***/
-        sngrl\SphinxSearch\SphinxSearchServiceProvider::class,
+        ptand\SphinxSearch\SphinxSearchServiceProvider::class,
     ),
 ```
 
 You can add this line to the files, where you may use SphinxSearch:
 
 ```php
-use sngrl\SphinxSearch\SphinxSearch;
+use ptand\SphinxSearch\SphinxSearch;
 ```
 
 Configuration
@@ -47,7 +47,7 @@ Configuration
 To use Sphinx Search, you need to configure your indexes and what model it should query. To do so, publish the configuration into your app.
 
 ```php
-php artisan vendor:publish --provider=sngrl\SphinxSearch\SphinxSearchServiceProvider --force
+php artisan vendor:publish --provider=ptand\SphinxSearch\SphinxSearchServiceProvider --force
 ```
 
 This will create the file `config/sphinxsearch.php`. Modify as needed the host and port, and configure the indexes, binding them to a table and id column.
