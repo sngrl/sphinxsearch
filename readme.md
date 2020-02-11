@@ -13,7 +13,7 @@ Require this package in your composer.json:
 ```php
 	"require": {
         /*** Some others packages ***/
-		"ptand/sphinxsearch": "dev-master",
+		"sngrl/sphinxsearch": "dev-master",
 	},
 ```
 
@@ -23,7 +23,7 @@ Run in your console `composer update` command to pull down the latest version of
 Or just run this in console:
 
 ```php
-composer require ptand/sphinxsearch:dev-master
+composer require sngrl/sphinxsearch:dev-master
 ```
 
 After updating composer, add the ServiceProvider to the "providers" array in config/app.php:
@@ -31,14 +31,14 @@ After updating composer, add the ServiceProvider to the "providers" array in con
 ```php
 	'providers' => array(
         /*** Some others providers ***/
-        ptand\SphinxSearch\SphinxSearchServiceProvider::class,
+        sngrl\SphinxSearch\SphinxSearchServiceProvider::class,
     ),
 ```
 
 You can add this line to the files, where you may use SphinxSearch:
 
 ```php
-use ptand\SphinxSearch\SphinxSearch;
+use sngrl\SphinxSearch\SphinxSearch;
 ```
 
 Configuration
@@ -47,7 +47,7 @@ Configuration
 To use Sphinx Search, you need to configure your indexes and what model it should query. To do so, publish the configuration into your app.
 
 ```php
-php artisan vendor:publish --provider=ptand\SphinxSearch\SphinxSearchServiceProvider --force
+php artisan vendor:publish --provider=sngrl\SphinxSearch\SphinxSearchServiceProvider --force
 ```
 
 This will create the file `config/sphinxsearch.php`. Modify as needed the host and port, and configure the indexes, binding them to a table and id column.
