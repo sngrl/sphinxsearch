@@ -140,7 +140,7 @@ class SphinxSearch
 
     public function setGroupBy($attribute, $func, $groupsort = '@group desc')
     {
-        $this->_connection->GroupBy($attribute, $func, $groupsort);
+        $this->_connection->setGroupBy($attribute, $func, $groupsort);
         return $this;
     }
 
